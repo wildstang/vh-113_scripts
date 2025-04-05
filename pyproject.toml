@@ -1,0 +1,24 @@
+[project]
+name = "vh113"
+version = "1.0.0"
+dependencies = []
+authors = [
+    { name = "Liam Fruzyna", email = "liam.fruzyna@wildstang.org" }
+]
+description = "Python library for communicating with the Vivid-Hosting VH-113 field access point."
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Topic :: System :: Networking"
+]
+
+[project.urls]
+Homepage = "https://github.com/wildstang/vh-113_scripts"
+Issues = "https://github.com/wildstang/vh-113_scripts/issues"
+Repository = "https://github.com/wildstang/vh-113_scripts.git"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

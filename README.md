@@ -8,7 +8,7 @@ Quickly configures the access point for 6 robots using a pre-made template.
 
 ## vh113 module
 
-TODO: build a wheel to install these scripts
+The vh113 module is designed to be built into a wheel and installed on a system. Pre-compiled wheels are available on the [releases page](https://github.com/wildstang/vh-113_scripts/releases).
 
 ### config.py
 
