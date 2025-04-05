@@ -34,3 +34,24 @@ options:
   -c, --channel {5,13,21,29,37,45,53,61,69,77,85,93,101,109,117}
                         Wi-Fi 6 GHz channel
 ```
+
+### status.py
+
+Continually monitors and logs the status of the VH-113 field access point.
+
+Usage:
+```
+> python3 -m vh113.status -h
+usage: status.py [-h] [-a IP_ADDRESS] [-d] [-m] [-s] [-b]
+
+Continually logs the status of a connected VH-113 field access point.
+
+options:
+  -h, --help            show this help message and exit
+  -a, --ip-address IP_ADDRESS
+                        VH-113 IP address
+  -d, --debug           print out each received status block
+  -m, --mac             print out MAC address of connected robots
+  -s, --strength        print out strength of connected robots
+  -b, --bandwidth       print out bandwidth of connected robots
+```
