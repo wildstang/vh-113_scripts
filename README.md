@@ -16,7 +16,7 @@ An updated version of `vh113.py`. Adds command line arguments to configure the m
 
 Usage:
 ```
-> python3 -m vh113/config -h
+> python3 -m vh113.config -h
 usage: config.py [-h] [-d] [-a IP_ADDRESS] [-p PASSWORD] [-c {5,13,21,29,37,45,53,61,69,77,85,93,101,109,117}] ...
 
 Configures a connected VH-113 field access point for up to 6 robots.
