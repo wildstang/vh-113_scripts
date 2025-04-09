@@ -62,7 +62,7 @@ def send_config(config: Union[dict, str], ip_address=DEFAULT_IP, timeout=0.1) ->
 				'error': f'Error {r.status_code} while communicating with {ip_address}',
 				'debug': r.reason
 			}
-	except requests.exceptions.ConnectTimeout as e:
+	except (requests.exceptions.ConnectTimeout, OSError) as e:
 		res = {
 			'success': False,
 			'error': f'Couldn\'t reach a VH-113 at {ip_address}. Are you connected to the radio through the PoE injector?',
