@@ -50,12 +50,11 @@ def send_config(config: Union[dict, str], ip_address=DEFAULT_IP, timeout=0.1) ->
 		config = json.dumps(config)
 
 	try:
-		r = requests.post(f'http://{ip_address}/configuration', json.dumps(config), timeout=timeout)
+		r = requests.post(f'http://{ip_address}/configuration', config, timeout=timeout)
 		if r.status_code == 202:
 			res = {
 				'success': True
 			}
-			print('Success! Please wait 60 seconds for networks.')
 		else:
 			res = {
 				'success': False,
