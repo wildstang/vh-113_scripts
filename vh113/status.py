@@ -55,7 +55,7 @@ if __name__ == "__main__":
 			# parse valid return statuses
 			if result['success']:
 				print('-----')
-				print(result['status'], 'Channel:', result['channel'], 'Bandwidth:', result['channelBandwidth'], 'Red VLANs:', result['redVlans'], 'Blue VLANs:', status['blueVlans'])
+				print(result['status'], 'Channel:', result['channel'], 'Bandwidth:', result['channelBandwidth'], 'Red VLANs:', result['redVlans'], 'Blue VLANs:', result['blueVlans'])
 				for key in result['stationStatuses']:
 					station: dict = result['stationStatuses'][key]
 					if station['isLinked']:
@@ -78,10 +78,10 @@ if __name__ == "__main__":
 					print(result)
 			else:
 				print(result['error'])
+
+			# run once per second
+			if time.monotonic() - start < 1:
+				time.sleep(1 - (time.monotonic() - start))
 		# exit on ctrl + c
 		except KeyboardInterrupt:
 			break
-
-		# run once per second
-		if time.monotonic() - start < 1:
-			time.sleep(1 - (time.monotonic() - start))
