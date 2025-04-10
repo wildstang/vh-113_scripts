@@ -1,9 +1,11 @@
 #!/bin/python3
 import json
+import time
 import requests
 from typing import Union
 
 from vh113 import DEFAULT_IP
+from vh113.status import get_status
 
 ALLOWED_CHANNELS = [5, 13, 21, 29, 37, 45, 53, 61, 69, 77, 85, 93, 101, 109, 117]
 DEFAULT_TEAMS = ['111', '112', '113', '114', '115', '116']
@@ -103,6 +105,37 @@ if __name__ == "__main__":
 	# send configuration object to VH-113
 	result = send_config(configuration)
 	if result['success']:
-		print('Success! Please wait 60 seconds for networks.')
+		print('Success! Waiting for radio configuration... press Ctrl + C to exit')
+		connected_robots = 0
+		status = 'UNKNOWN'
+		try:
+			# wait for all robots to connect or Ctrl + C
+			while connected_robots < 6:
+				start = time.monotonic()
+				result = get_status(args.ip_address)
+				# wait for status to become ACTIVE
+				if status != 'ACTIVE' and result['success'] and result['status'] == 'ACTIVE':
+					status = result['status']
+					print('Radio ready!')
+				# when ACTIVE, query configured SSIDs
+				elif status == 'ACTIVE':
+					statuses = result['stationStatuses']
+					# count SSIDs
+					ssids = [statuses[key]['ssid'] for key in statuses if statuses[key]['isLinked']]
+					if len(ssids) != connected_robots:
+						connected_robots = len(ssids)
+						print(f'{connected_robots} robots connected: {", ".join(ssids)}')
+
+					# compare SSIDs
+					if any([statuses[key]['ssid'] != configuration['stationConfigurations'][key]['ssid'] for key in statuses]):
+						print(f'Unexcepted SSIDs')
+
+				# run once per second
+				if time.monotonic() - start < 1:
+					time.sleep(1 - (time.monotonic() - start))
+		except KeyboardInterrupt:
+			pass
 	else:
 		print(result['error'])
+		if args.debug:
+			print(result['debug'])
