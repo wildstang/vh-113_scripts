@@ -1,6 +1,5 @@
 #!/bin/python3
 import json
-import time
 import requests
 from typing import Union
 
@@ -75,6 +74,7 @@ def send_config(config: Union[dict, str], ip_address=DEFAULT_IP, timeout=0.1) ->
 
 # if run as a script
 if __name__ == "__main__":
+	import time
 	import argparse
 
 	# parse arguments
