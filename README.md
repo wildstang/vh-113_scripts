@@ -55,3 +55,13 @@ options:
   -s, --strength        print out strength of connected robots
   -b, --bandwidth       print out bandwidth of connected robots
 ```
+
+## pi-auto-config
+
+A systemd service and corresponding Python script are included to setup a device like Raspberry Pi to automatically configure the radio on boot.
+```
+scp vh113-1.1.0-py3-non-any.whl vh113.service auto_config.py pi@raspberrypi.local
+pip3 install vh113-1.1.0-py3-non-any.whl --break-package-system
+sudo cp vh113.service /etc/systemd/system
+sudo systemctl enable vh113
+```
