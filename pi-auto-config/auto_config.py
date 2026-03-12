@@ -1,6 +1,5 @@
 from time import sleep
 
-from vh113.status import get_status
 from vh113.config import send_config, DEFAULT_CONFIG
 
 

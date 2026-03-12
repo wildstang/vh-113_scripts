@@ -96,7 +96,7 @@ if __name__ == "__main__":
 		key = f'{"red" if i % 2 == 0 else "blue"}{i // 2 + 1}'
 		configuration['stationConfigurations'][key]['wpaKey'] = args.password
 		if i < len(args.teams):
-			configuration['stationConfigurations'][key]['ssid'] = args.teams[i]
+			configuration['stationConfigurations'][key]['ssid'] = str(args.teams[i])
 
 	# print configuration object if debug was enabled
 	if args.debug:
